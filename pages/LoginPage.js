@@ -1,17 +1,17 @@
 const { loadAccountCredentials } = require("../utils/accountLoader");
+const BasePage = require("./BasePage");
 
-class LoginPage {
+class LoginPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
     this.usernameInputLocator = this.page.locator("#formBasicUsername");
     this.passwordInputLocator = this.page.locator("#formBasicPassword");
     this.loginButtonLocator = this.page.locator(".login-button");
-    this.titleLocator = this.page.locator("h1");
     this.accounts = loadAccountCredentials();
   }
 
   async login(username, password) {
-    await this.page.goto("https://comattfrontend.onrender.com/");
+    await this.page.goto("/");
     await this.usernameInputLocator.fill(username);
     await this.passwordInputLocator.fill(password);
     await this.loginButtonLocator.click();
@@ -24,12 +24,7 @@ class LoginPage {
 
   async loginByTeacher() {
     const { username, password } = this.accounts.teacher;
-    await this.login("a", password);
-  }
-
-  async getTitleText() {
-    await this.titleLocator.waitFor({ state: "visible" });
-    return await this.titleLocator.textContent();
+    await this.login(username, password);
   }
 }
 
