@@ -2,7 +2,7 @@
 const { defineConfig, devices } = require("@playwright/test");
 const dotenv = require("dotenv");
 
-dotenv.config({path:`./env/.env.${process.env.ENV}`})
+dotenv.config({ path: `./env/.env.${process.env.ENV}` });
 
 module.exports = defineConfig({
   testDir: "./tests",
@@ -19,11 +19,13 @@ module.exports = defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-     baseURL: process.env.BASEURL,
+    baseURL: process.env.BASEURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     headless: false,
     trace: "on-first-retry",
+    screenshot: { mode: "only-on-failure", fullPage: true },
+    video: { mode: "retain-on-failure", size: { width: 1024, height: 780 } },
   },
 
   /* Configure projects for major browsers */
