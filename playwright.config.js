@@ -22,7 +22,7 @@ module.exports = defineConfig({
     baseURL: process.env.BASEURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    headless: false,
+    headless: true,
     trace: "on-first-retry",
     screenshot: { mode: "only-on-failure", fullPage: true },
     video: { mode: "retain-on-failure", size: { width: 1024, height: 780 } },
