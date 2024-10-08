@@ -1,6 +1,6 @@
 const { test, expect } = require("../fixtures/usePageObjects");
 
-test.describe.serial("User Page Fixture", { tag: ["@usersFixture"] }, () => {
+test.describe.serial("User Page Fixture", { tag: ["@usersFixture","@regression"] }, () => {
   const user = {
     username: "testUsername",
     password: "12345",
