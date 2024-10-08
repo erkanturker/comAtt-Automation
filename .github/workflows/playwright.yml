@@ -23,7 +23,7 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-smoke
-          path: playwright-report-smoke/
+          path: playwright-report/
           retention-days: 30
 
   regression_tests:
@@ -45,5 +45,5 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-reggression
-          path: playwright-report-reggression/
+          path: playwright-report/
           retention-days: 30
