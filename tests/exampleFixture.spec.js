@@ -1,22 +1,21 @@
-const { test, chromium, expect } = require("../fixtures/usePageObjects");
-const LoginPage = require("../pages/LoginPage");
+const { test, expect } = require("../fixtures/usePageObjects");
 
-test("Test withouth page fixure", { tag: ["@noFixture"] }, async () => {
-  const browser = await chromium.launch();
+test.describe("Login Page", () => {
+  test(
+    "Admin can login with Fixture",
+    { tag: ["@fixtureAdmin"] },
+    async ({ loginByAdmin }) => {
+      const actualTitleText = await loginByAdmin.getTitleText();
+      expect(actualTitleText).toBe("Dashboard");
+    }
+  );
 
-  const context = await browser.newContext();
-
-  const page = await context.newPage();
-
-  const loginPage = new LoginPage(page);
-
-  await loginPage.loginByAdmin();
-
-  const actualTitleText = await loginPage.getTitleText();
-  expect(actualTitleText).toBe("Dashboard");
-});
-
-test("test with fixure", { tag: ["@fixture"] }, async ({ loginByAdmin }) => {
-  const actualTitleText = await loginByAdmin.getTitleText();
-  expect(actualTitleText).toBe("Dashboard");
+  test(
+    "Teacher can login with Fixture",
+    { tag: ["@fixtureTeacher"] },
+    async ({ loginByTeacher }) => {
+      const actualTitleText = await loginByTeacher.getTitleText();
+      expect(actualTitleText).toBe("Dashboard");
+    }
+  );
 });
