@@ -1,7 +1,7 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, develop, feautre]
+    branches: [main,develop,feautre]
   pull_request:
     branches: [main]
 jobs:
@@ -17,8 +17,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: ENV=development npx playwright test --grep=@smoke
-        run: about:blank
+      - name: Run Playwright tests
+        run: ENV=development npx playwright test --grep=@smoke
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
